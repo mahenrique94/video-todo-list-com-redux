@@ -1,0 +1,59 @@
+.todo-field {
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    color: #595959;
+    font-size: 2rem;
+    padding: .5rem 1rem;
+    margin-right: 1rem;
+    vertical-align: middle;
+    width: 80%;
+}
+.todo-field:focus {
+    outline: none;
+}
+
+.todo-btn {
+    background: #00cc99;
+    border: none;
+    border-radius: 5px;
+    color: #fdfdfd;
+    padding: 1rem 1.5rem;
+    transition: all .1s linear;
+}
+.todo-btn:hover {
+    background: #009973;
+    cursor: pointer;
+}
+.todo-btn:focus {
+    outline: none;
+}
+
+.todo-table {
+    border-collapse: collapse;
+    margin: 2rem 0;
+    width: 100%;
+}
+.todo-table thead {
+    background: #dcdcdc;
+}
+.todo-table thead th {
+    color: #333333;
+    padding: 1rem;
+    text-align: left;
+}
+.todo-table tbody td {
+    padding: .5rem 1rem;
+}
+
+.todo-table-btn {
+    background: #ff8080;
+    border: none;
+    border-radius: 5px;
+    color: #fdfdfd;
+    padding: .5rem 1rem;
+    transition: all .1s linear;
+}
+.todo-table-btn:hover {
+    background: #ff4d4d;
+    cursor: pointer;
+}
