@@ -1,27 +1,21 @@
 import React, { Component } from 'react'
 
-import { actions, store } from '../redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { actions } from '../redux'
 
 import './TodoList.css'
 
 class TodoList extends Component {
 
     state = {
-        task: '',
-        tasks: []
-    }
-
-    componentDidMount() {
-        store.subscribe(() => {
-            this.setState({
-                task: '',
-                tasks: store.getState().todoReducer.tasks
-            })
-        })
+        task: ''
     }
 
     render() {
-        const { task, tasks } = this.state
+        const { tasks } = this.props
+        const { task } = this.state
         return (
             <div className="todo">
                 <form className="todo-form" onSubmit={ this.handleSubmit }>
@@ -52,14 +46,28 @@ class TodoList extends Component {
 
     handleChange = event => this.setState({ task: event.target.value })
 
-    handleRemove = task => store.dispatch(actions.remove(task))
+    handleRemove = task => {
+        const { remove } = this.props
+        remove(task)
+    }
 
     handleSubmit = event => {
+        const { add } = this.props
         const { task } = this.state
         event.preventDefault()
-        store.dispatch(actions.add(task))
+        add(task)
+        this.setState({ task : '' })
     }
 
 }
 
-export default TodoList
+const mapStateToProps = state => ({
+    tasks: state.todoReducer.tasks
+})
+
+const mapDispatchToProps = dispatch => ({
+    add: bindActionCreators(actions.add, dispatch),
+    remove: bindActionCreators(actions.remove, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
